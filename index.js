@@ -4,6 +4,8 @@
     "7cPxy6": "HA",
     "L9n2Qw": "Chris R.",
     "Q1bV02": "Riley & Pat",
+    "ABCDEF": "Gelai & Gerzl",
+    "KHRIST": "Khristia & Khrizteen",
   };
 
   // endpoint of your Firebase Function
