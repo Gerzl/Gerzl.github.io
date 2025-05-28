@@ -15,7 +15,7 @@ const db = admin.firestore();
 /* ---- 1. Save a single RSVP (POST /saveRsvp) ---- */
 exports.saveRsvp = functions.https.onRequest(async (req, res) => {
   // CORS – allow your domain only, adjust as needed
-  res.set("Access-Control-Allow-Origin", "https://gerzl.github.io/");
+  res.set("Access-Control-Allow-Origin", "https://gerzl.github.io");
   res.set("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") return res.status(204).send("");
