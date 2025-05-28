@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gelai & Gerzl – RSVP</title>
+
+<!-- ---------- CSS (vanilla, mobile-first, ~120 lines) ---------- -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="fade">
+
+  <h1>Gelai & Gerzl<br>♡ RSVP ♡</h1>
+
+  <!-- ===== Invitation view (shown when id is valid) ===== -->
+  <section id="rsvpSection" hidden>
+    <p id="greeting"></p>
+    <form id="rsvpForm">
+      <input type="hidden" name="inviteId" id="inviteId">
+
+      <label>Full name
+        <input name="name" required>
+      </label>
+
+      <label>Will you attend?
+        <select name="attendance" required>
+          <option value="" selected disabled>— select —</option>
+          <option value="yes">Gladly accept</option>
+          <option value="no">Regretfully decline</option>
+        </select>
+      </label>
+
+      <label>Number of guests (incl. you)
+        <select name="guests" required>
+          <option value="1">1</option><option>2</option><option>3</option><option>4</option>
+        </select>
+      </label>
+
+      <label>Dietary requirements
+        <textarea name="dietary" rows="2" placeholder="Let us know…"></textarea>
+      </label>
+
+      <label>Song request
+        <input name="song" placeholder="Optional">
+      </label>
+
+      <button type="submit">Send RSVP</button>
+      <div id="status"></div>
+    </form>
+  </section>
+
+  <!-- ===== Thank-you view ===== -->
+  <section id="thanks" hidden>
+    <p>Thank you – we’ve saved your response. See you in September 🎉</p>
+  </section>
+
+  <!-- ===== Admin view ===== -->
+  <section id="adminPanel" hidden>
+    <h2>Guest list</h2>
+    <table id="adminTable">
+      <thead><tr><th>Name</th><th>ID</th><th>Attending?</th><th>Guests</th><th>Dietary</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+</main>
+
+<script src="index.js"> </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+ :root{
+   --rose:#eab8c1;--wine:#61122f;--cream:#faf9f7;--grey:#555;
+   font-family: "Segoe UI", system-ui, sans-serif; line-height:1.45;
+ }
+
+ *{box-sizing:border-box;margin:0;padding:0}
+
+ body{background:var(--cream);color:var(--grey);display:flex;justify-content:center}
+
+ main{max-width:680px;width:100%;padding:2rem}
+
+ h1{font-family:serif;font-size:clamp(2rem,6vw,3rem);color:var(--wine);text-align:center;margin-bottom:2rem}
+
+ form{display:grid;gap:1rem}
+
+ label{display:flex;flex-direction:column;font-weight:600}
+
+ input,select,textarea{
+   padding:.6rem .8rem;border:1px solid #ccc;border-radius:.4rem;font:inherit
+ }
+
+ button{
+   background:var(--wine);color:#fff;border:none;padding:.8rem 1.4rem;
+   border-radius:.4rem;font-size:1rem;cursor:pointer;transition:.2s;
+ }
+
+ button:hover{filter:brightness(1.1)}
+
+ #status{margin-top:1rem;font-weight:600}
+
+ /* fade-in animation */
+ [hidden]{display:none!important}
+
+ .fade{opacity:0;transform:translateY(20px);animation:fade .6s forwards}
+
+ @keyframes fade{to{opacity:1;transform:none}}
+
+ /* Admin table */
+ table{width:100%;border-collapse:collapse;margin-top:2rem}
+
+ th,td{border:1px solid #ddd;padding:.6rem;text-align:left}
+
+ th{background:#f0e9e9}
