@@ -58,10 +58,20 @@
       <thead><tr><th>Name</th><th>ID</th><th>Attending?</th><th>Guests</th><th>Dietary</th></tr></thead>
       <tbody></tbody>
     </table>
+    <div id="lastSync" class="small"></div>
   </section>
 
 </main>
 
-<script src="index.js"> </script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"></script>
+<script>
+  const fbApp = firebase.initializeApp({
+    apiKey: "AIza…",            // copy from Firebase console ▸ Web app
+    authDomain: "gelaiandgerzl.firebaseapp.com",
+    projectId: "gelaiandgerzl"
+  });
+  const db = firebase.firestore();
+</script>
 </body>
 </html>

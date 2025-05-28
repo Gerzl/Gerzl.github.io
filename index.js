@@ -19,20 +19,27 @@
   const admin = qs.get("admin") === ADMIN_KEY;
 
 
-  if (admin) {
-    // Admin mode (/?admin=pee-pee-poo-poo)
+  let pollHandle;
+
+function startPolling() {
+  loadAllResponses();                               // do one immediately
+  pollHandle = setInterval(loadAllResponses, 30000);
+}
+
+function stopPolling() {
+  clearInterval(pollHandle);
+}
+
+if (admin) {
     $("#adminPanel").hidden = false;
-    loadAllResponses();
-  } else if (inviteId && INVITEES[inviteId]) {
-    // Normal guest mode
-    $("#rsvpSection").hidden = false;
-    $("#inviteId").value = inviteId;
-    $("#greeting").innerHTML =
-      `Hi <b>${INVITEES[inviteId]}</b>, we’re so excited to celebrate with you!`;
-  } else {
-    document.body.innerHTML =
-      "<main><p style='margin-top:3rem;font-size:1.25rem'>Sorry – that link isn’t recognised.<br>Please check with the couple.</p></main>";
+    startPolling();
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") startPolling();
+      else stopPolling();
+    });
   }
+
 
 
   $("#rsvpForm")?.addEventListener("submit", async e => {
@@ -59,19 +66,22 @@
 
 
   async function loadAllResponses() {
-    const tbody = $("#adminTable tbody");
-    try {
-      const res = await fetch(`${ENDPOINT}?list=1&key=${ADMIN_KEY}`);
-      const list = await res.json();             // [{...doc}, …]
-      for (const g of list) {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${g.name}</td><td>${g.inviteId}</td>
-          <td>${g.attendance}</td><td>${g.guests}</td><td>${g.dietary || ""}</td>`;
-        tbody.appendChild(tr);
-      }
-    } catch (err) {
-      tbody.innerHTML =
-        "<tr><td colspan='5'>Couldn’t load responses. Check the key.</td></tr>";
+  const tbody = $("#adminTable tbody");
+  try {
+    const res  = await fetch(`${ENDPOINT}?list=1&key=${ADMIN_KEY}`);
+    const list = await res.json();        // [{…}, …]
+
+    tbody.innerHTML = "";                 // ← clear old rows
+    for (const g of list) {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${g.name}</td><td>${g.inviteId}</td>
+        <td>${g.attendance}</td><td>${g.guests}</td>
+        <td>${g.dietary ?? ""}</td>`;
+      tbody.appendChild(tr);
     }
+  } catch (err) {
+    tbody.innerHTML =
+      "<tr><td colspan='5'>Couldn’t load responses.</td></tr>";
   }
+}
