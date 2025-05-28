@@ -2,8 +2,8 @@
   // hard-coded invite IDs → name shown on landing
   const INVITEES = {
     "7cPxy6": "HA",
-    "L9n2Qw": "Chris R.",
-    "Q1bV02": "Riley & Pat",
+    "L9n2Qw": "Michael Jackson",
+    "Q1bV02": "Chris Pratt",
     "ABCDEF": "Gelai & Gerzl",
     "KHRIST": "Khristia & Khrizteen",
   };
@@ -11,17 +11,16 @@
   // endpoint of your Firebase Function
   const ENDPOINT = "https://us-central1-gelaiandgerzl.cloudfunctions.net/saveRsvp";
   // secret key to access the admin listing endpoint
-  const ADMIN_KEY = "moon-phase-delta";
+  const ADMIN_KEY = "pee-pee-poo-poo";
 
-  /* ------------- 1. Helper shortcuts ------------- */
   const $ = sel => document.querySelector(sel);
   const qs = new URLSearchParams(location.search);
   const inviteId = qs.get("id");
   const admin = qs.get("admin") === ADMIN_KEY;
 
-  /* ------------- 2. Routing ------------- */
+
   if (admin) {
-    // Admin mode (/?admin=moon-phase-delta)
+    // Admin mode (/?admin=pee-pee-poo-poo)
     $("#adminPanel").hidden = false;
     loadAllResponses();
   } else if (inviteId && INVITEES[inviteId]) {
@@ -31,12 +30,11 @@
     $("#greeting").innerHTML =
       `Hi <b>${INVITEES[inviteId]}</b>, we’re so excited to celebrate with you!`;
   } else {
-    // Invalid / missing link
     document.body.innerHTML =
       "<main><p style='margin-top:3rem;font-size:1.25rem'>Sorry – that link isn’t recognised.<br>Please check with the couple.</p></main>";
   }
 
-  /* ------------- 3. Guest submission ------------- */
+
   $("#rsvpForm")?.addEventListener("submit", async e => {
     e.preventDefault();
     $("#status").textContent = "Saving…";
@@ -59,7 +57,7 @@
     }
   });
 
-  /* ------------- 4. Admin listing ------------- */
+
   async function loadAllResponses() {
     const tbody = $("#adminTable tbody");
     try {
