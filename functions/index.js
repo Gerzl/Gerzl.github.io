@@ -15,7 +15,7 @@ const db = admin.firestore();
 /* ---- 1. Save a single RSVP (POST /saveRsvp) ---- */
 exports.saveRsvp = functions.https.onRequest(async (req, res) => {
   // CORS – allow your domain only, adjust as needed
-  res.set("Access-Control-Allow-Origin", "https://our-wedding-rsvp.web.app");
+  res.set("Access-Control-Allow-Origin", "https://gerzl.github.io/wedding-rsvp");
   res.set("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") return res.status(204).send("");
@@ -41,12 +41,3 @@ exports.listRsvps = functions.https.onRequest(async (req, res) => {
   const list = snap.docs.map((d) => (d.data()));
   return res.json(list);
 });
-
-
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
-
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
