@@ -6,6 +6,8 @@
     "Q1bV02": "Chris Pratt",
     "ABCDEF": "Gelai & Gerzl",
     "KHRIST": "Khristia & Khrizteen",
+    "L9n2Qw": "Chris R.",
+    "Q1bV02": "Riley & Pat",
   };
 
   // endpoint of your Firebase Function
